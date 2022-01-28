@@ -12,16 +12,16 @@ const numbers = {
 
 const romanToInt = function(s) {
   const arr = s.split('').map((key) => numbers[key]);
-  let res = arr[0];
-  let prev = res;
-  for (let i = 1; i < arr.length; i++){
-    res += arr[i];
-    if (arr[i] > prev) {
-      res -= prev * 2;
+  const last = arr.length - 1;
+  let res = 0;
+  for (let i = 0; i < last; i++) {
+    if (arr[i] < arr[i + 1]) {
+      res -= arr[i];
+    } else {
+      res += arr[i];
     }
-    prev = arr[i];
   }
-  return res;
+  return res + arr[last];
 };
 
 console.log(romanToInt('III'));
